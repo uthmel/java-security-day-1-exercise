@@ -35,6 +35,12 @@ public class GameController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Game> getOneVideoGame(@PathVariable int id) {
+        Game videoGame = this.gameRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Video Game with ID " + id + " not found."));
+        return ResponseEntity.ok(videoGame);
+    }
 
 
     @PutMapping("{id}")
@@ -42,9 +48,9 @@ public class GameController {
         Game existingCustomer = gameRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found"));
 
-        existingCustomer.setAge_rating(game.getAge_rating());
+        existingCustomer.setAgeRating(game.getAgeRating());
         existingCustomer.setTitle(game.getTitle());
-        existingCustomer.setNumber_of_players(game.getNumber_of_players());
+        existingCustomer.setNumberOfPlayers(game.getNumberOfPlayers());
 
         Game updatedGame = gameRepository.save(existingCustomer);
         return ResponseEntity.ok(updatedGame);

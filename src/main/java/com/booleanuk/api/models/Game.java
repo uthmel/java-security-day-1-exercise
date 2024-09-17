@@ -18,19 +18,18 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "title")
+    @Column(nullable = false)
     private String title;
 
-    @Column(name = "age_rating")
-    private String age_rating;
+    @Column(nullable = false)
+    private String ageRating;
 
-    @Column(name = "number_of_players")
-    private int number_of_players;
+    @Column(nullable = false)
+    private int numberOfPlayers;
 
-
-    public Game(String title, String age_rating, int number_of_players) {
+    public Game(String title, String ageRating, int numberOfPlayers) {
         this.title = title;
-        this.age_rating = age_rating;
-        this.number_of_players = number_of_players;
+        this.ageRating = ageRating;
+        this.numberOfPlayers = numberOfPlayers;
     }
 }
